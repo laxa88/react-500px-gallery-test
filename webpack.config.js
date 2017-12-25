@@ -10,6 +10,11 @@ module.exports = {
   output: {
     filename: './dist/bundle.js'
   },
+  module: {
+    loaders: [
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }
+    ]
+  },
   plugins: [
     HtmlWebpackPluginConfig
   ]
