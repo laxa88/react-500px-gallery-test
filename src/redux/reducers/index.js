@@ -1,3 +1,5 @@
+import * as G from '../../constants';
+
 /**
  *
  * @param {*} state
@@ -6,17 +8,17 @@
  */
 function counter(state = {}, action) {
   switch (action.type) {
-    case 'SEARCH_KEYWORD': {
+    case G.SEARCH_KEYWORD: {
       return {
         ...state,
-        searchKeyword: true,
+        keyword: action.keyword,
       };
     }
 
-    case 'SEARCH_CATEGORY': {
+    case G.SEARCH_CATEGORY: {
       return {
         ...state,
-        searchCategory: true,
+        category: action.category,
       };
     }
 
