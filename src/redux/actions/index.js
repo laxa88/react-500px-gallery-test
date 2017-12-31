@@ -1,6 +1,15 @@
 import * as G from '../../constants';
 
 /**
+ * @return {*} action
+ */
+export function loadDefaultGallery() {
+  return {
+    type: G.GALLERY_DEFAULT,
+  };
+}
+
+/**
  *
  * @param {*} keyword
  * @return {*} action
