@@ -3,6 +3,15 @@ import * as G from '../../constants';
 /**
  * @return {*} action
  */
+function actionLoading() {
+  return {
+    type: G.GALLERY_LOADING,
+  };
+}
+
+/**
+ * @return {*} action
+ */
 function actionDefaultGallery() {
   return {
     type: G.GALLERY_DEFAULT,
@@ -11,7 +20,7 @@ function actionDefaultGallery() {
 
 /**
  *
- * @param {*} keyword
+ * @param {string} keyword
  * @return {*} action
  */
 function actionSearchByKeyword(keyword) {
@@ -23,7 +32,7 @@ function actionSearchByKeyword(keyword) {
 
 /**
  *
- * @param {*} category
+ * @param {string} category
  * @return {*} action
  */
 function actionSearchByCategory(category) {
@@ -38,6 +47,19 @@ function actionSearchByCategory(category) {
  */
 export function loadDefaultGallery() {
   return (dispatch) => {
-    dispatch(actionDefaultGallery());
+    dispatch(actionLoading());
+
+    fetch(G.apiPhotos())
+      .then((response) => {
+        console.log('hello', response);
+        return response.json();
+      })
+      .then((json) => {
+        console.log('hello2', json);
+        dispatch(actionDefaultGallery());
+      })
+      .catch((exception) => {
+        console.log('throw', exception);
+      });
   };
 }
