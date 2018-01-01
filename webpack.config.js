@@ -1,3 +1,5 @@
+const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './src/index.html',
@@ -8,7 +10,8 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: './dist/bundle.js',
+    path: path.resolve('dist'),
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
