@@ -1,12 +1,12 @@
-div .cell {
+.cell {
   float:left;
   width:33.33%;
 }
 
-div .cell div {
+.cell div {
   margin: 5px;
 }
 
-div .cell div img {
+.cell div img {
   width:100%
 }

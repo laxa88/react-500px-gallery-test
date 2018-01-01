@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import './gallery.css';
 
 const Gallery = (props) => {
-  console.log(props);
-  const photos = props.photos;
+  const photos = props.photos || [];
   return (
     <div>
-    { photos.map((item) => (
+    {
+      photos.map((item) => (
       <div className="cell" key={item.id}>
         <div>
           <img src={item.image_url} title={item.name} />
