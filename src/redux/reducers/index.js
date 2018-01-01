@@ -11,14 +11,14 @@ function counter(state = {}, action) {
     case G.GALLERY_LOADING: {
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       };
     }
 
     case G.GALLERY_DEFAULT: {
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         galleryJson: action.json,
       };
     }
@@ -26,7 +26,7 @@ function counter(state = {}, action) {
     case G.SEARCH_KEYWORD: {
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         keyword: action.keyword,
       };
     }
@@ -34,7 +34,7 @@ function counter(state = {}, action) {
     case G.SEARCH_CATEGORY: {
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         category: action.category,
       };
     }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import * as _ from 'lodash';
 
 import * as actions from '../redux/actions';
-import Home from './home';
+import Gallery from './gallery';
 import Search from './search';
 
 /**
@@ -22,21 +22,21 @@ class App extends React.Component {
    * @return {*}
    */
   render() {
+    const isLoading = _.get(this.props, 'state.isLoading', false);
+
     // Get the photos array, if property doesn't exist, default to empty array.
     // Note: If the property exists but is invalid, default to empty array.
     const photos = _.get(this.props, 'state.galleryJson.photos', []) || [];
 
     return (
       <div>
-        <ul>
-        { photos.map((item) => (
-          <li key={item.id}>
-            <img src={item.image_url} alt={item.name} width='100' height='100' />
-          </li>
-        ))}
-        </ul>
-        <Home></Home>
-        <Search></Search>
+        <Search />
+        { isLoading
+          ?
+          <div>Loading...</div>
+          :
+          <Gallery photos={photos} />
+        }
       </div>
     );
   }
@@ -44,6 +44,10 @@ class App extends React.Component {
 
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  state: PropTypes.shape({
+    isLoading: PropTypes.bool,
+    galleryJson: PropTypes.objectOf(PropTypes.any),
+  }),
 };
 
 const mapStateToProps = (state) => (
