@@ -1,17 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './gallery.css';
 
 const Gallery = (props) => {
   console.log(props);
   const photos = props.photos;
   return (
-    <ul>
+    <div>
     { photos.map((item) => (
-      <li key={item.id}>
-        <img src={item.image_url} alt={item.name} width='100' height='100' />
-      </li>
-    ))}
-    </ul>
+      <div className="cell" key={item.id}>
+        <div>
+          <img src={item.image_url} title={item.name} />
+        </div>
+      </div>
+      ))
+    }
+    </div>
   );
 };
 

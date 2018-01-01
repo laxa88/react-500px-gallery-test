@@ -1,0 +1,12 @@
+div .cell {
+  float:left;
+  width:33.33%;
+}
+
+div .cell div {
+  margin: 5px;
+}
+
+div .cell div img {
+  width:100%
+}

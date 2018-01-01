@@ -7,8 +7,6 @@ import thunk from 'redux-thunk';
 import App from './components/app';
 import reducer from './redux/reducers';
 
-import './index.css';
-
 const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
