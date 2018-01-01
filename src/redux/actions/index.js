@@ -12,9 +12,10 @@ function actionLoading() {
 /**
  * @return {*} action
  */
-function actionDefaultGallery() {
+function actionDefaultGallery(json) {
   return {
     type: G.GALLERY_DEFAULT,
+    json,
   };
 }
 
@@ -51,12 +52,10 @@ export function loadDefaultGallery() {
 
     fetch(G.apiPhotos())
       .then((response) => {
-        console.log('hello', response);
         return response.json();
       })
       .then((json) => {
-        console.log('hello2', json);
-        dispatch(actionDefaultGallery());
+        dispatch(actionDefaultGallery(json));
       })
       .catch((exception) => {
         console.log('throw', exception);

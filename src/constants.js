@@ -1,6 +1,6 @@
 const API_BASE = 'https://api.500px.com/v1/';
 const EP_PHOTOS = 'photos';
-// const EP_SEARCH = 'photos/search';
+const EP_SEARCH = 'photos/search';
 const CONSUMER_KEY = 'eq0EBJISTn4tknXbI3Gwtp0aVOqFdxGxL8I7rP92';
 
 /**
