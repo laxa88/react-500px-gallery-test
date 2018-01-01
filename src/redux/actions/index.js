@@ -10,6 +10,7 @@ function actionLoading() {
 }
 
 /**
+ * @param {*} json
  * @return {*} action
  */
 function actionDefaultGallery(json) {
