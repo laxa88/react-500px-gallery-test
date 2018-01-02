@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * SearchKeyword
+ * SearchKeywordInput
  */
-class SearchKeyword extends React.Component {
+class SearchKeywordInput extends React.Component {
   /**
    * constructor
    */
@@ -56,8 +56,8 @@ class SearchKeyword extends React.Component {
   }
 }
 
-SearchKeyword.propTypes = {
+SearchKeywordInput.propTypes = {
   onBlur: PropTypes.func.isRequired,
 };
 
-export default SearchKeyword;
+export default SearchKeywordInput;

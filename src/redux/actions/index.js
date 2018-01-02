@@ -34,6 +34,38 @@ function actionGalleryLoaded(json) {
   };
 }
 
+// Helper methods
+
+/**
+ * @return {*}
+ */
+function handleResponse() {
+  return (response) => {
+    return response.json();
+  };
+}
+
+/**
+ * @param {*} dispatch
+ * @return {*}
+ */
+function handleJsonData(dispatch) {
+  return (json) => {
+    dispatch(actionGalleryLoaded(json));
+  };
+}
+
+/**
+ * @param {*} dispatch
+ * @return {*}
+ */
+function handleException(dispatch) {
+  return (exception) => {
+    // TODO: dispatch an event instead
+    console.error('throw', exception);
+  };
+}
+
 // Public action methods
 
 /**
@@ -58,15 +90,9 @@ export function loadGallery(categories, page) {
     dispatch(actionGalleryLoading());
 
     fetch(G.apiPhotos(categories, page))
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        dispatch(actionGalleryLoaded(json));
-      })
-      .catch((exception) => {
-        console.log('throw', exception);
-      });
+      .then(handleResponse())
+      .then(handleJsonData(dispatch))
+      .catch(handleException(dispatch));
   };
 }
 
@@ -80,5 +106,10 @@ export function loadGallery(categories, page) {
 export function searchGallery(keyword, categories, page) {
   return (dispatch) => {
     dispatch(actionGalleryLoading());
+
+    fetch(G.apiPhotosSearch(keyword, categories, page))
+      .then(handleResponse())
+      .then(handleJsonData(dispatch))
+      .catch(handleException(dispatch));
   };
 }

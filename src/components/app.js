@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 import * as actions from '../redux/actions';
 import Gallery from './gallery';
-import SearchKeyword from './search-keyword';
+import SearchKeywordInput from './search-keyword';
 import SearchButton from './search-button';
 import * as G from '../constants';
 
@@ -38,7 +38,10 @@ class App extends React.Component {
    * @param {*} e
    */
   handleClickSearchButton(e) {
-    this.props.dispatch(actions.searchGallery());
+    const keyword = _.get(this.props, 'state.keyword', null);
+    if (keyword) {
+      this.props.dispatch(actions.searchGallery(keyword));
+    }
   }
 
   /**
@@ -60,7 +63,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <SearchKeyword onBlur={this.handleSetKeyword} />
+        <SearchKeywordInput onBlur={this.handleSetKeyword} />
         <SearchButton onClick={this.handleClickSearchButton} label="Search" />
 
         { isLoading
