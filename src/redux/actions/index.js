@@ -17,7 +17,7 @@ function actionSetSearchKeyword(keyword) {
 /**
  * @return {*} action
  */
-function actionLoading() {
+function actionGalleryLoading() {
   return {
     type: G.GALLERY_LOADING,
   };
@@ -27,7 +27,7 @@ function actionLoading() {
  * @param {*} json
  * @return {*} action
  */
-function actionDefaultGallery(json) {
+function actionGalleryLoaded(json) {
   return {
     type: G.GALLERY_LOADED,
     json,
@@ -48,21 +48,37 @@ export function setSearchKeyword(keyword) {
 }
 
 /**
+ * loadGallery
+ * @param {string[]} categories
+ * @param {number} page
  * @return {*}
  */
-export function loadDefaultGallery() {
+export function loadGallery(categories, page) {
   return (dispatch) => {
-    dispatch(actionLoading());
+    dispatch(actionGalleryLoading());
 
-    fetch(G.apiPhotos())
+    fetch(G.apiPhotos(categories, page))
       .then((response) => {
         return response.json();
       })
       .then((json) => {
-        dispatch(actionDefaultGallery(json));
+        dispatch(actionGalleryLoaded(json));
       })
       .catch((exception) => {
         console.log('throw', exception);
       });
+  };
+}
+
+/**
+ *
+ * @param {string} keyword
+ * @param {string[]} categories
+ * @param {number} page
+ * @return {*}
+ */
+export function searchGallery(keyword, categories, page) {
+  return (dispatch) => {
+    dispatch(actionGalleryLoading());
   };
 }
