@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * SearchKeyword
@@ -10,17 +11,29 @@ class SearchKeyword extends React.Component {
   constructor() {
     super();
 
-    this.handleKeydown = this.handleKeydown.bind(this);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   /**
-   * handleKeydown
+   * handleChange
    * @param {*} e
    */
-  handleKeydown(e) {
-    if (e.keyCode === 13) {
-      // TODO call parent-provided callback to perform search by keyword
-      // TODO add separate button to manually perform search (in case category filter is updated)
+  handleChange(e) {
+    this.setState({
+      value: e.target.value,
+    });
+  }
+
+  /**
+   * handleBlur
+   * @param {*} e
+   */
+  handleBlur(e) {
+    if (this.props.onBlur) {
+      this.props.onBlur(this.state.value);
     }
   }
 
@@ -32,11 +45,19 @@ class SearchKeyword extends React.Component {
     return (
       <div>
         <p>
-          Filter by keyword <input onKeyDown={this.handleKeydown} />
+          Filter by keyword <input
+            value={this.state.value}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            />
         </p>
       </div>
     );
   }
 }
+
+SearchKeyword.propTypes = {
+  onBlur: PropTypes.func.isRequired,
+};
 
 export default SearchKeyword;
