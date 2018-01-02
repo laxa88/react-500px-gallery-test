@@ -13,6 +13,7 @@ const ExtractTextPluginConfig = new ExtractTextPlugin(
 );
 
 module.exports = {
+  devtool: 'source-map',
   entry: './src/index.js',
   output: {
     path: path.resolve('dist'),
