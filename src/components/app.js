@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 import * as actions from '../redux/actions';
 import Gallery from './gallery';
-import Search from './search';
+import SearchKeyword from './search-keyword';
 
 /**
  * App
@@ -30,7 +30,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <Search />
+        <SearchKeyword />
         { isLoading
           ?
           <div>Loading...</div>

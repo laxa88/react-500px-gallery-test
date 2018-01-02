@@ -1,9 +1,9 @@
 import React from 'react';
 
 /**
- * Search
+ * SearchCategory
  */
-class Search extends React.Component {
+class SearchCategory extends React.Component {
   /**
    * constructor
    */
@@ -50,16 +50,6 @@ class Search extends React.Component {
   }
 
   /**
-   * handleKeydown
-   * @param {*} e
-   */
-  handleKeydown(e) {
-    if (e.keyCode === 13) {
-      console.log('beep', e.keyCode);
-    }
-  }
-
-  /**
    * handleFilterToggle
    * @param {*} e
    */
@@ -74,31 +64,26 @@ class Search extends React.Component {
    * @return {*}
    */
   render() {
+    // TODO
+    // use _.forOwn to iterate the filter object and display checkboxes
     return (
       <div>
-        <div>
-          <p>
-            Filter by keyword <input onKeyDown={this.handleKeydown} />
-          </p>
-        </div>
-        <div>
-          <p>
-            <input
-              name="isGoing"
-              type="checkbox"
-              onChange={this.handleFilterToggle}
-            />
-            Filter by category
-          </p>
-          {
-            this.state.isFilterByCategory
-            &&
-            <div>categories</div>
-          }
-        </div>
+        <p>
+          <input
+            name="isGoing"
+            type="checkbox"
+            onChange={this.handleFilterToggle}
+          />
+          Filter by category
+        </p>
+        {
+          this.state.isFilterByCategory
+          &&
+          <div>categories</div>
+        }
       </div>
     );
   }
 }
 
-export default Search;
+export default SearchCategory;
