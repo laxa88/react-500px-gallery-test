@@ -12,6 +12,23 @@ import SearchKeyword from './search-keyword';
  */
 class App extends React.Component {
   /**
+   * constructor
+   */
+  constructor() {
+    super();
+
+    this.handleSetKeyword = this.handleSetKeyword.bind(this);
+  }
+
+  /**
+   * handleSetKeyword
+   * @param {string} keyword
+   */
+  handleSetKeyword(keyword) {
+    this.props.dispatch(actions.setSearchKeyword(keyword));
+  }
+
+  /**
    * componentDidMount
    */
   componentDidMount() {
@@ -30,7 +47,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <SearchKeyword />
+        <SearchKeyword onBlur={this.handleSetKeyword} />
         { isLoading
           ?
           <div>Loading...</div>

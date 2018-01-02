@@ -24,7 +24,7 @@ export function apiPhotos(categories, page, rpp) {
   return result;
 };
 
+export const SET_KEYWORD = 'SET_KEYWORD';
 export const GALLERY_LOADING = 'GALLERY_LOADING';
-export const GALLERY_DEFAULT = 'GALLERY_DEFAULT';
-export const SEARCH_KEYWORD = 'SEARCH_KEYWORD';
-export const SEARCH_CATEGORY = 'SEARCH_CATEGORY';
+export const GALLERY_LOADED = 'GALLERY_LOADED';
+export const SEARCH = 'SEARCH';

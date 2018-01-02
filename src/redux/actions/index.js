@@ -1,5 +1,19 @@
 import * as G from '../../constants';
 
+// Private action creators
+
+/**
+ * actionSetSearchKeyword
+ * @param {string} keyword
+ * @return {*}
+ */
+function actionSetSearchKeyword(keyword) {
+  return {
+    type: G.SET_KEYWORD,
+    keyword,
+  };
+}
+
 /**
  * @return {*} action
  */
@@ -15,32 +29,21 @@ function actionLoading() {
  */
 function actionDefaultGallery(json) {
   return {
-    type: G.GALLERY_DEFAULT,
+    type: G.GALLERY_LOADED,
     json,
   };
 }
 
-/**
- *
- * @param {string} keyword
- * @return {*} action
- */
-function actionSearchByKeyword(keyword) {
-  return {
-    type: G.SEARCH_KEYWORD,
-    keyword,
-  };
-}
+// Public action methods
 
 /**
- *
- * @param {string} category
- * @return {*} action
+ * setSearchKeyword
+ * @param {string} keyword
+ * @return {*}
  */
-function actionSearchByCategory(category) {
-  return {
-    type: G.SEARCH_CATEGORY,
-    category,
+export function setSearchKeyword(keyword) {
+  return (dispatch) => {
+    dispatch(actionSetSearchKeyword(keyword));
   };
 }
 

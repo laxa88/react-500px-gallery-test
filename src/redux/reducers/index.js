@@ -8,6 +8,13 @@ import * as G from '../../constants';
  */
 function counter(state = {}, action) {
   switch (action.type) {
+    case G.SET_KEYWORD: {
+      return {
+        ...state,
+        keyword: action.keyword,
+      };
+    }
+
     case G.GALLERY_LOADING: {
       return {
         ...state,
@@ -15,27 +22,11 @@ function counter(state = {}, action) {
       };
     }
 
-    case G.GALLERY_DEFAULT: {
+    case G.GALLERY_LOADED: {
       return {
         ...state,
         isLoading: false,
         galleryJson: action.json,
-      };
-    }
-
-    case G.SEARCH_KEYWORD: {
-      return {
-        ...state,
-        isLoading: false,
-        keyword: action.keyword,
-      };
-    }
-
-    case G.SEARCH_CATEGORY: {
-      return {
-        ...state,
-        isLoading: false,
-        category: action.category,
       };
     }
 
