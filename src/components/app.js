@@ -25,7 +25,9 @@ class App extends React.Component {
    * @param {string} keyword
    */
   handleSetKeyword(keyword) {
-    this.props.dispatch(actions.setSearchKeyword(keyword));
+    if (this.props.state.keyword !== keyword) {
+      this.props.dispatch(actions.setSearchKeyword(keyword));
+    }
   }
 
   /**
@@ -48,6 +50,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchKeyword onBlur={this.handleSetKeyword} />
+
         { isLoading
           ?
           <div>Loading...</div>
@@ -62,6 +65,7 @@ class App extends React.Component {
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   state: PropTypes.shape({
+    keyword: PropTypes.string,
     isLoading: PropTypes.bool,
     galleryJson: PropTypes.objectOf(PropTypes.any),
   }),
