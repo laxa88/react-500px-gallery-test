@@ -101,7 +101,13 @@ class SearchCategory extends React.Component {
           <input
             type="checkbox"
             onChange={this.handleFilterToggle}
-          /> Categories
+          /> {
+            this.state.isFilterByCategory
+            ?
+            'Hide Categories'
+            :
+            'Show Categories'
+          }
         </div>
         {
           this.state.isFilterByCategory
