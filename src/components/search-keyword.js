@@ -43,14 +43,12 @@ class SearchKeywordInput extends React.Component {
    */
   render() {
     return (
-      <div>
-        <p>
-          Filter by keyword <input
-            value={this.state.value}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            />
-        </p>
+      <div className="row">
+        Filter by keyword <input
+          value={this.state.value}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          />
       </div>
     );
   }

@@ -3,7 +3,6 @@ import * as G from '../../constants';
 // Private action creators
 
 /**
- * actionSetSearchKeyword
  * @param {string} keyword
  * @return {*}
  */
@@ -11,6 +10,19 @@ function actionSetSearchKeyword(keyword) {
   return {
     type: G.SET_KEYWORD,
     keyword,
+  };
+}
+
+/**
+ * @param {string} category
+ * @param {bool} value
+ * @return {*}
+ */
+function actionSetCategory(category, value) {
+  return {
+    type: G.SET_CATEGORY,
+    category,
+    value,
   };
 }
 
@@ -69,7 +81,6 @@ function handleException(dispatch) {
 // Public action methods
 
 /**
- * setSearchKeyword
  * @param {string} keyword
  * @return {*}
  */
@@ -80,7 +91,17 @@ export function setSearchKeyword(keyword) {
 }
 
 /**
- * loadGallery
+ * @param {string} category
+ * @param {bool} value
+ * @return {*}
+ */
+export function setCategory(category, value) {
+  return (dispatch) => {
+    dispatch(actionSetCategory(category, value));
+  };
+}
+
+/**
  * @param {string[]} categories
  * @param {number} page
  * @return {*}
@@ -97,7 +118,6 @@ export function loadGallery(categories, page) {
 }
 
 /**
- *
  * @param {string} keyword
  * @param {string[]} categories
  * @param {number} page

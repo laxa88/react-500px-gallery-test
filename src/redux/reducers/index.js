@@ -6,12 +6,24 @@ import * as G from '../../constants';
  * @param {*} action
  * @return {*} new state
  */
-function counter(state = {}, action) {
+function counter(state = {
+  isLoading: false,
+  categories: [],
+}, action) {
   switch (action.type) {
     case G.SET_KEYWORD: {
       return {
         ...state,
         keyword: action.keyword,
+      };
+    }
+
+    case G.SET_CATEGORY: {
+      // let categories = JSON.parse(JSON.stringify(state.categories));
+      console.log('TODO');
+
+      return {
+        ...state,
       };
     }
 

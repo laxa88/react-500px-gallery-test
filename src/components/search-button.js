@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SearchButton = (props) => (
-  <div>
-    <input type="button" onClick={props.onClick} value={props.label} />
+  <div className="row">
+    <input
+      type="button"
+      onClick={props.onClick}
+      value={props.label}
+    />
   </div>
 );
 

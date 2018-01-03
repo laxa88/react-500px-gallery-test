@@ -7,6 +7,7 @@ import * as actions from '../redux/actions';
 import Gallery from './gallery';
 import SearchKeywordInput from './search-keyword';
 import SearchButton from './search-button';
+import SearchCategory from './search-category';
 import * as G from '../constants';
 
 /**
@@ -21,6 +22,7 @@ class App extends React.Component {
 
     this.handleSetKeyword = this.handleSetKeyword.bind(this);
     this.handleClickSearchButton = this.handleClickSearchButton.bind(this);
+    this.handleCheckCategory = this.handleCheckCategory.bind(this);
   }
 
   /**
@@ -45,6 +47,15 @@ class App extends React.Component {
   }
 
   /**
+   * handleCheckCategory
+   * @param {*} e
+   */
+  handleCheckCategory(e) {
+    console.log('#', e);
+    this.props.dispatch(actions.setCategory(e.key, e.value));
+  }
+
+  /**
    * componentDidMount
    */
   componentDidMount() {
@@ -62,8 +73,9 @@ class App extends React.Component {
     const photos = _.get(this.props, 'state.galleryJson.photos', []) || [];
 
     return (
-      <div>
+      <div className="row">
         <SearchKeywordInput onBlur={this.handleSetKeyword} />
+        <SearchCategory onChange={this.handleCheckCategory} />
         <SearchButton onClick={this.handleClickSearchButton} label="Search" />
 
         { isLoading

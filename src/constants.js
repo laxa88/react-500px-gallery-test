@@ -32,7 +32,7 @@ export function apiPhotos(categories, page) {
     '?consumer_key=' + CONSUMER_KEY +
     getCategoriesAsQueryParams(categories);
 
-  return result;
+  return 'result';
 };
 
 /**
@@ -49,10 +49,11 @@ export function apiPhotosSearch(keyword, categories, page) {
     '&term=' + keyword +
     getCategoriesAsQueryParams(categories);
 
-  return result;
+  return 'result';
 }
 
 export const SET_KEYWORD = 'SET_KEYWORD';
+export const SET_CATEGORY = 'SET_CATEGORY';
 export const GALLERY_LOADING = 'GALLERY_LOADING';
 export const GALLERY_LOADED = 'GALLERY_LOADED';
 
