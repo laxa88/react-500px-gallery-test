@@ -19,11 +19,18 @@ function counter(state = {
     }
 
     case G.SET_CATEGORY: {
-      // let categories = JSON.parse(JSON.stringify(state.categories));
-      console.log('TODO');
+      let categories = JSON.parse(JSON.stringify(state.categories));
+
+      const index = categories.indexOf(action.category);
+      if (action.value === true) {
+        (index === -1) && categories.push(action.category);
+      } else {
+        (index !== -1) && categories.splice(index, 1);
+      }
 
       return {
         ...state,
+        categories,
       };
     }
 

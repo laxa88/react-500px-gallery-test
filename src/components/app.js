@@ -51,7 +51,6 @@ class App extends React.Component {
    * @param {*} e
    */
   handleCheckCategory(e) {
-    console.log('#', e);
     this.props.dispatch(actions.setCategory(e.key, e.value));
   }
 
