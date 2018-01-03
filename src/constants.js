@@ -46,7 +46,7 @@ export function apiPhotosSearch(keyword, categories, page) {
     API_BASE +
     EP_SEARCH +
     '?consumer_key=' + CONSUMER_KEY +
-    '&term=' + keyword +
+    ((keyword) ? ('&term=' + keyword) : ('')) +
     getCategoriesAsQueryParams(categories);
 
   return result;

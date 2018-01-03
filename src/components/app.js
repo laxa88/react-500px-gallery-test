@@ -41,9 +41,8 @@ class App extends React.Component {
    */
   handleClickSearchButton(e) {
     const keyword = _.get(this.props, 'state.keyword', null);
-    if (keyword) {
-      this.props.dispatch(actions.searchGallery(keyword));
-    }
+    const categories = _.get(this.props, 'state.categories', []);
+    this.props.dispatch(actions.searchGallery(keyword, categories));
   }
 
   /**
