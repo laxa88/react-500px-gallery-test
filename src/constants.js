@@ -32,7 +32,7 @@ export function apiPhotos(categories, page) {
     '?consumer_key=' + CONSUMER_KEY +
     getCategoriesAsQueryParams(categories);
 
-  return 'result';
+  return result;
 };
 
 /**
@@ -49,7 +49,7 @@ export function apiPhotosSearch(keyword, categories, page) {
     '&term=' + keyword +
     getCategoriesAsQueryParams(categories);
 
-  return 'result';
+  return result;
 }
 
 export const SET_KEYWORD = 'SET_KEYWORD';
