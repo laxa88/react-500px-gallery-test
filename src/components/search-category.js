@@ -93,8 +93,6 @@ class SearchCategory extends React.Component {
    * @return {*}
    */
   render() {
-    // TODO
-    // use _.forOwn to iterate the filter object and display checkboxes
     return (
       <div className="row">
         <div className="row">

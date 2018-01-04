@@ -7,9 +7,12 @@ import * as G from '../../constants';
  * @return {*} new state
  */
 function counter(state = {
-  isLoading: false,
+  galleryType: G.DEFAULT,
+  pageNumber: 1,
   categories: [],
-  page: 1,
+  keyword: '',
+  isLoading: false,
+  galleryJson: {},
 }, action) {
   switch (action.type) {
     case G.SET_KEYWORD: {

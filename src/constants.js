@@ -10,7 +10,7 @@ const CONSUMER_KEY = 'eq0EBJISTn4tknXbI3Gwtp0aVOqFdxGxL8I7rP92';
 function getCategoriesAsQueryParams(categories) {
   let result = '';
 
-  if (categories) {
+  if (categories && categories.length > 0) {
     const categoryString = categories.reduce((acc, curr) => {
       return acc + ',' + curr;
     });
@@ -30,6 +30,7 @@ export function apiPhotos(categories, page) {
     API_BASE +
     EP_PHOTOS +
     '?consumer_key=' + CONSUMER_KEY +
+    ((page) ? '&page=' + page : '') +
     getCategoriesAsQueryParams(categories);
 
   return result;
@@ -46,7 +47,8 @@ export function apiPhotosSearch(keyword, categories, page) {
     API_BASE +
     EP_SEARCH +
     '?consumer_key=' + CONSUMER_KEY +
-    ((keyword) ? ('&term=' + keyword) : ('')) +
+    ((keyword) ? '&term=' + keyword : '') +
+    ((page) ? '&page=' + page : '') +
     getCategoriesAsQueryParams(categories);
 
   return result;

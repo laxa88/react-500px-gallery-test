@@ -39,11 +39,13 @@ function actionSetPageNumber(pageNumber) {
 }
 
 /**
+ * @param {string} galleryType
  * @return {*} action
  */
-function actionGalleryLoading() {
+function actionGalleryLoading(galleryType) {
   return {
     type: G.GALLERY_LOADING,
+    galleryType,
   };
 }
 
@@ -136,7 +138,7 @@ export function setPageNumber(pageNumber) {
  */
 export function loadGallery(categories, page) {
   return (dispatch) => {
-    dispatch(actionGalleryLoading());
+    dispatch(actionGalleryLoading(G.DEFAULT));
 
     fetch(G.apiPhotos(categories, page))
       .then(handleResponse())
@@ -153,7 +155,7 @@ export function loadGallery(categories, page) {
  */
 export function searchGallery(keyword, categories, page) {
   return (dispatch) => {
-    dispatch(actionGalleryLoading());
+    dispatch(actionGalleryLoading(G.SEARCH));
 
     fetch(G.apiPhotosSearch(keyword, categories, page))
       .then(handleResponse())

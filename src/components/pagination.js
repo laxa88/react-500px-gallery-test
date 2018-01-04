@@ -45,9 +45,6 @@ class Pagination extends React.Component {
       pages.push(nextPage);
     }
 
-    console.log('##', this.props);
-    console.log('#', pages);
-
     return (
       <div className='pagination'>
         <div>&lt;</div>

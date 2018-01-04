@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import * as _ from 'lodash';
 
 import * as actions from '../redux/actions';
 import Gallery from './gallery';
@@ -9,6 +8,7 @@ import SearchKeywordInput from './search-keyword';
 import SearchButton from './search-button';
 import SearchCategory from './search-category';
 import Pagination from './pagination';
+import * as G from '../constants';
 
 /**
  * App
@@ -40,8 +40,9 @@ class App extends React.Component {
    * handleClickSearchButton
    */
   handleClickSearchButton() {
-    const keyword = _.get(this.props, 'state.keyword', null);
-    const categories = _.get(this.props, 'state.categories', []);
+    const {categories, keyword} = this.props.state;
+
+    this.props.dispatch(actions.setPageNumber(1));
     this.props.dispatch(actions.searchGallery(keyword, categories));
   }
 
@@ -62,9 +63,33 @@ class App extends React.Component {
    * @param {number} pageNumber
    */
   handleClickPage(pageNumber) {
-    this.props.dispatch(
-      actions.setPageNumber(pageNumber)
-    );
+    const {galleryType, categories, keyword, isLoading} = this.props.state;
+
+    if (isLoading) {
+      return;
+    }
+
+    this.props.dispatch(actions.setPageNumber(pageNumber));
+
+    switch (galleryType) {
+      case G.SEARCH: {
+        this.props.dispatch(actions.searchGallery(
+          keyword,
+          categories,
+          pageNumber
+        ));
+      }
+      break;
+
+      case G.DEFAULT:
+      default: {
+        this.props.dispatch(actions.loadGallery(
+          categories,
+          pageNumber
+        ));
+      }
+      break;
+    }
   }
 
   /**
@@ -78,13 +103,13 @@ class App extends React.Component {
    * @return {*}
    */
   render() {
-    const isLoading = _.get(this.props, 'state.isLoading', false);
+    const isLoading = this.props.state.isLoading;
 
     // Get the photos array, if property doesn't exist, default to empty array.
     // Note: If the property exists but is invalid, default to empty array.
-    const photos = _.get(this.props, 'state.galleryJson.photos', []) || [];
+    const photos = this.props.state.galleryJson.photos || [];
 
-    const pageNumber = _.get(this.props, 'state.pageNumber', 1);
+    const pageNumber = this.props.state.pageNumber;
 
     return (
       <div className="row">
@@ -107,10 +132,12 @@ class App extends React.Component {
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   state: PropTypes.shape({
-    actualPageNumber: PropTypes.number,
-    keyword: PropTypes.string,
-    isLoading: PropTypes.bool,
-    galleryJson: PropTypes.objectOf(PropTypes.any),
+    galleryType: PropTypes.string.isRequired,
+    pageNumber: PropTypes.number.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    keyword: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    galleryJson: PropTypes.objectOf(PropTypes.any).isRequired,
   }),
 };
 
