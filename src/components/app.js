@@ -21,6 +21,7 @@ class App extends React.Component {
     super();
 
     this.handleSetKeyword = this.handleSetKeyword.bind(this);
+    this.handleClickHomeButton = this.handleClickHomeButton.bind(this);
     this.handleClickSearchButton = this.handleClickSearchButton.bind(this);
     this.handleCheckCategory = this.handleCheckCategory.bind(this);
     this.handleClickPage = this.handleClickPage.bind(this);
@@ -34,6 +35,14 @@ class App extends React.Component {
     if (this.props.state.keyword !== keyword) {
       this.props.dispatch(actions.setSearchKeyword(keyword));
     }
+  }
+
+  /**
+   * handleClickHomeButton
+   */
+  handleClickHomeButton() {
+    this.props.dispatch(actions.setPageNumber(1));
+    this.props.dispatch(actions.loadGallery());
   }
 
   /**
@@ -115,6 +124,7 @@ class App extends React.Component {
       <div className="row">
         <SearchKeywordInput onBlur={this.handleSetKeyword} />
         <SearchCategory onChange={this.handleCheckCategory} />
+        <Button onClick={this.handleClickHomeButton} label="Home" />
         <Button onClick={this.handleClickSearchButton} label="Search" />
         <Pagination page={pageNumber} onClick={this.handleClickPage} />
 
