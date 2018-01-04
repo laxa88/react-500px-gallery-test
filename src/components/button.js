@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SearchButton = (props) => (
+const Button = (props) => (
   <div className="row">
     <input
       type="button"
@@ -11,9 +11,9 @@ const SearchButton = (props) => (
   </div>
 );
 
-SearchButton.propTypes = {
+Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
 };
 
-export default SearchButton;
+export default Button;

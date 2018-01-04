@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as actions from '../redux/actions';
 import Gallery from './gallery';
 import SearchKeywordInput from './search-keyword';
-import SearchButton from './search-button';
+import Button from './button';
 import SearchCategory from './search-category';
 import Pagination from './pagination';
 import * as G from '../constants';
@@ -115,7 +115,7 @@ class App extends React.Component {
       <div className="row">
         <SearchKeywordInput onBlur={this.handleSetKeyword} />
         <SearchCategory onChange={this.handleCheckCategory} />
-        <SearchButton onClick={this.handleClickSearchButton} label="Search" />
+        <Button onClick={this.handleClickSearchButton} label="Search" />
         <Pagination page={pageNumber} onClick={this.handleClickPage} />
 
         { isLoading
