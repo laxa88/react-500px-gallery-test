@@ -8,7 +8,7 @@ import Gallery from './gallery';
 import SearchKeywordInput from './search-keyword';
 import SearchButton from './search-button';
 import SearchCategory from './search-category';
-import * as G from '../constants';
+import Pagination from './pagination';
 
 /**
  * App
@@ -23,6 +23,7 @@ class App extends React.Component {
     this.handleSetKeyword = this.handleSetKeyword.bind(this);
     this.handleClickSearchButton = this.handleClickSearchButton.bind(this);
     this.handleCheckCategory = this.handleCheckCategory.bind(this);
+    this.handleClickPage = this.handleClickPage.bind(this);
   }
 
   /**
@@ -37,9 +38,8 @@ class App extends React.Component {
 
   /**
    * handleClickSearchButton
-   * @param {*} e
    */
-  handleClickSearchButton(e) {
+  handleClickSearchButton() {
     const keyword = _.get(this.props, 'state.keyword', null);
     const categories = _.get(this.props, 'state.categories', []);
     this.props.dispatch(actions.searchGallery(keyword, categories));
@@ -47,10 +47,24 @@ class App extends React.Component {
 
   /**
    * handleCheckCategory
-   * @param {*} e
+   * @param {object} category
+   * @param {string} category.key
+   * @param {bool} category.value
    */
-  handleCheckCategory(e) {
-    this.props.dispatch(actions.setCategory(e.key, e.value));
+  handleCheckCategory(category) {
+    this.props.dispatch(
+      actions.setCategory(category.key, category.value)
+    );
+  }
+
+  /**
+   * handleClickPage
+   * @param {number} pageNumber
+   */
+  handleClickPage(pageNumber) {
+    this.props.dispatch(
+      actions.setPageNumber(pageNumber)
+    );
   }
 
   /**
@@ -70,11 +84,14 @@ class App extends React.Component {
     // Note: If the property exists but is invalid, default to empty array.
     const photos = _.get(this.props, 'state.galleryJson.photos', []) || [];
 
+    const pageNumber = _.get(this.props, 'state.pageNumber', 1);
+
     return (
       <div className="row">
         <SearchKeywordInput onBlur={this.handleSetKeyword} />
         <SearchCategory onChange={this.handleCheckCategory} />
         <SearchButton onClick={this.handleClickSearchButton} label="Search" />
+        <Pagination page={pageNumber} onClick={this.handleClickPage} />
 
         { isLoading
           ?
@@ -90,6 +107,7 @@ class App extends React.Component {
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   state: PropTypes.shape({
+    actualPageNumber: PropTypes.number,
     keyword: PropTypes.string,
     isLoading: PropTypes.bool,
     galleryJson: PropTypes.objectOf(PropTypes.any),

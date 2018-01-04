@@ -27,6 +27,18 @@ function actionSetCategory(category, value) {
 }
 
 /**
+ *
+ * @param {*} pageNumber
+ * @return {*}
+ */
+function actionSetPageNumber(pageNumber) {
+  return {
+    type: G.SET_PAGE_NUMBER,
+    pageNumber,
+  };
+}
+
+/**
  * @return {*} action
  */
 function actionGalleryLoading() {
@@ -98,6 +110,22 @@ export function setSearchKeyword(keyword) {
 export function setCategory(category, value) {
   return (dispatch) => {
     dispatch(actionSetCategory(category, value));
+  };
+}
+
+/**
+ * @param {number} pageNumber
+ * @return {*}
+ */
+export function setPageNumber(pageNumber) {
+  return (dispatch) => {
+    let actualPageNumber = pageNumber || 1;
+
+    if (actualPageNumber < 1) {
+      actualPageNumber = 1;
+    }
+
+    dispatch(actionSetPageNumber(pageNumber));
   };
 }
 

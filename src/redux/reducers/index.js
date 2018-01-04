@@ -9,6 +9,7 @@ import * as G from '../../constants';
 function counter(state = {
   isLoading: false,
   categories: [],
+  page: 1,
 }, action) {
   switch (action.type) {
     case G.SET_KEYWORD: {
@@ -34,9 +35,17 @@ function counter(state = {
       };
     }
 
+    case G.SET_PAGE_NUMBER: {
+      return {
+        ...state,
+        pageNumber: action.pageNumber,
+      };
+    }
+
     case G.GALLERY_LOADING: {
       return {
         ...state,
+        galleryType: action.galleryType,
         isLoading: true,
       };
     }

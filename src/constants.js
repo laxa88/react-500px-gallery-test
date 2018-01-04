@@ -54,6 +54,8 @@ export function apiPhotosSearch(keyword, categories, page) {
 
 export const SET_KEYWORD = 'SET_KEYWORD';
 export const SET_CATEGORY = 'SET_CATEGORY';
+export const SET_PAGE_NUMBER = 'SET_PAGE_NUMBER';
+
 export const GALLERY_LOADING = 'GALLERY_LOADING';
 export const GALLERY_LOADED = 'GALLERY_LOADED';
 
