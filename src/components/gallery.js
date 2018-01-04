@@ -7,13 +7,19 @@ const Gallery = (props) => {
   return (
     <div>
     {
-      photos.map((item) => (
-      <div className="cell" key={item.id}>
-        <div>
-          <img src={item.image_url} title={item.name} />
-        </div>
+      photos.length > 0
+      ?
+        photos.map((item) => (
+          <div className="cell" key={item.id}>
+            <div>
+              <img src={item.image_url} title={item.name} />
+            </div>
+          </div>
+        ))
+      :
+      <div>
+        No results found.
       </div>
-      ))
     }
     </div>
   );
