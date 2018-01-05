@@ -20,10 +20,8 @@ class Pagination extends React.Component {
    * @param {*} e
    */
   handleClick(e) {
-    if (this.props.onClick) {
-      const page = parseInt(e.target.innerHTML);
-      this.props.onClick(page);
-    }
+    const page = parseInt(e.target.innerHTML);
+    this.props.onClick(page);
   }
 
   /**
