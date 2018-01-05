@@ -4,7 +4,7 @@ const EP_SEARCH = 'photos/search';
 const CONSUMER_KEY = 'eq0EBJISTn4tknXbI3Gwtp0aVOqFdxGxL8I7rP92';
 
 /**
- * @param {*} categories
+ * @param {string[]} categories
  * @return {string}
  */
 function getCategoriesAsQueryParams(categories) {
@@ -21,8 +21,8 @@ function getCategoriesAsQueryParams(categories) {
 }
 
 /**
- * @param {*} categories
- * @param {*} page
+ * @param {string[]} categories
+ * @param {number} page
  * @return {string}
  */
 export function apiPhotos(categories, page) {
@@ -37,9 +37,9 @@ export function apiPhotos(categories, page) {
 };
 
 /**
- * @param {*} keyword
- * @param {*} categories
- * @param {*} page
+ * @param {string} keyword
+ * @param {string[]} categories
+ * @param {number} page
  * @return {string}
  */
 export function apiPhotosSearch(keyword, categories, page) {
