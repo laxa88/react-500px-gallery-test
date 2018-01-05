@@ -1,12 +1,29 @@
-.cell {
-  float:left;
-  width:33.33%;
+@media screen and (min-width:480px) {
+  .cell {
+    float:left;
+    width:33.33%;
+  }
+
+  .cell div {
+    margin: 5px;
+  }
+
+  .cell div img {
+    width:100%
+  }
 }
 
-.cell div {
-  margin: 5px;
-}
+@media screen and (max-width:480px) {
+  .cell {
+    float:left;
+    width:100%;
+  }
 
-.cell div img {
-  width:100%
+  .cell div {
+    margin: 5px;
+  }
+
+  .cell div img {
+    width:100%
+  }
 }
