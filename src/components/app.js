@@ -41,8 +41,13 @@ class App extends React.Component {
    * handleClickHomeButton
    */
   handleClickHomeButton() {
+    const {categories} = this.props.state;
+
     this.props.dispatch(actions.setPageNumber(1));
-    this.props.dispatch(actions.loadGallery());
+    this.props.dispatch(actions.loadGallery(
+      categories,
+      pageNumber
+    ));
   }
 
   /**
