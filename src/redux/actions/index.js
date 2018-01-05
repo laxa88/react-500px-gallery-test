@@ -60,6 +60,17 @@ function actionGalleryLoaded(json) {
   };
 }
 
+/**
+ * @param {*} exception
+ * @return {*} action
+ */
+function actionError(exception) {
+  return {
+    type: G.GALLERY_FAIL,
+    exception,
+  };
+}
+
 // Helper methods
 
 /**
@@ -87,8 +98,7 @@ function handleJsonData(dispatch) {
  */
 function handleException(dispatch) {
   return (exception) => {
-    // TODO: dispatch an event instead
-    console.error('throw', exception);
+    dispatch(actionError(exception));
   };
 }
 
@@ -127,7 +137,7 @@ export function setPageNumber(pageNumber) {
       actualPageNumber = 1;
     }
 
-    dispatch(actionSetPageNumber(pageNumber));
+    dispatch(actionSetPageNumber(actualPageNumber));
   };
 }
 
@@ -140,7 +150,7 @@ export function loadGallery(categories, page) {
   return (dispatch) => {
     dispatch(actionGalleryLoading(G.DEFAULT));
 
-    fetch(G.apiPhotos(categories, page))
+    return fetch(G.apiPhotos(categories, page))
       .then(handleResponse())
       .then(handleJsonData(dispatch))
       .catch(handleException(dispatch));
@@ -157,7 +167,7 @@ export function searchGallery(keyword, categories, page) {
   return (dispatch) => {
     dispatch(actionGalleryLoading(G.SEARCH));
 
-    fetch(G.apiPhotosSearch(keyword, categories, page))
+    return fetch(G.apiPhotosSearch(keyword, categories, page))
       .then(handleResponse())
       .then(handleJsonData(dispatch))
       .catch(handleException(dispatch));

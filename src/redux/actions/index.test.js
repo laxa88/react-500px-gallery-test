@@ -9,6 +9,8 @@ configure({adapter: new Adapter()});
 
 const mockStore = configureStore([thunk]);
 
+global.fetch = require('jest-fetch-mock');
+
 describe('redux actions', () => {
   test('setSearchKeyword dispatches event', () => {
     const store = mockStore();
@@ -48,12 +50,87 @@ describe('redux actions', () => {
   ].forEach((config) => {
     test('setPageNumber dispatches event: ' + config.description, () => {
       const store = mockStore();
-      store.dispatch(actions.setCategory('foo', 123));
+      store.dispatch(actions.setPageNumber(config.pageNumber));
       expect(store.getActions()).toEqual([{
-        type: 'SET_CATEGORY',
-        category: 'foo',
-        value: 123,
+        type: 'SET_PAGE_NUMBER',
+        pageNumber: config.expected,
       }]);
     });
+  });
+
+  test('loadGallery dispatches and fetches data from API', () => {
+    fetch.mockResponse(JSON.stringify({dummyData: 'foo'}));
+
+    const store = mockStore();
+    store.dispatch(actions.loadGallery([], 1))
+      .then(() => {
+        expect(store.getActions()).toEqual([
+          {
+            'galleryType': 'DEFAULT',
+            'type': 'GALLERY_LOADING',
+          },
+          {
+            'json': {'dummyData': 'foo'},
+            'type': 'GALLERY_LOADED',
+          },
+        ]);
+      });
+  });
+
+  test('loadGallery exception is handled', () => {
+    fetch.mockReject({message: 'error message'});
+
+    const store = mockStore();
+    store.dispatch(actions.loadGallery([], 1))
+      .then(() => {
+        expect(store.getActions()).toEqual([
+          {
+            'galleryType': 'DEFAULT',
+            'type': 'GALLERY_LOADING',
+          },
+          {
+            'exception': {'message': 'error message'},
+            'type': 'GALLERY_FAIL',
+          },
+        ]);
+      });
+  });
+
+  test('searchGallery dispatches and fetches data from API', () => {
+    fetch.mockResponse(JSON.stringify({dummyData: 'foo'}));
+
+    const store = mockStore();
+    store.dispatch(actions.searchGallery('', [], 1))
+      .then(() => {
+        expect(store.getActions()).toEqual([
+          {
+            'galleryType': 'SEARCH',
+            'type': 'GALLERY_LOADING',
+          },
+          {
+            'json': {'dummyData': 'foo'},
+            'type': 'GALLERY_LOADED',
+          },
+        ]);
+      });
+  });
+
+  test('searchGallery exception is handled', () => {
+    fetch.mockReject({message: 'error message'});
+
+    const store = mockStore();
+    store.dispatch(actions.searchGallery('', [], 1))
+      .then(() => {
+        expect(store.getActions()).toEqual([
+          {
+            'galleryType': 'SEARCH',
+            'type': 'GALLERY_LOADING',
+          },
+          {
+            'exception': {'message': 'error message'},
+            'type': 'GALLERY_FAIL',
+          },
+        ]);
+      });
   });
 });

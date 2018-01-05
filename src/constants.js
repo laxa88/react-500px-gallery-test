@@ -60,6 +60,7 @@ export const SET_PAGE_NUMBER = 'SET_PAGE_NUMBER';
 
 export const GALLERY_LOADING = 'GALLERY_LOADING';
 export const GALLERY_LOADED = 'GALLERY_LOADED';
+export const GALLERY_FAIL = 'GALLERY_FAIL';
 
 export const DEFAULT = 'DEFAULT';
 export const SEARCH = 'SEARCH';
