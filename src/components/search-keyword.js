@@ -32,9 +32,7 @@ class SearchKeywordInput extends React.Component {
    * @param {*} e
    */
   handleBlur(e) {
-    if (this.props.onBlur) {
-      this.props.onBlur(this.state.value);
-    }
+    this.props.onBlur(this.state.value);
   }
 
   /**
