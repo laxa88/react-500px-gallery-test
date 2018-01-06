@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "start": "webpack-dev-server",
+    "build": "webpack --config webpack.config.release.js",
+    "test": "jest --watch --coverage"
   },
   "author": "",
   "license": "ISC",
