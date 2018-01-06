@@ -5,12 +5,8 @@ import 'enzyme';
 import Pagination from './pagination';
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-// import configureStore from 'redux-mock-store';
-// import * as C from '../constants';
 
 configure({adapter: new Adapter()});
-
-// const mockStore = configureStore();
 
 describe('Pagination', () => {
   test('Can render', () => {
