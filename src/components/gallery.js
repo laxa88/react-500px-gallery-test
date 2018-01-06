@@ -26,7 +26,11 @@ const Gallery = (props) => {
 };
 
 Gallery.propTypes = {
-  photos: PropTypes.arrayOf(PropTypes.any),
+  photos: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image_url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  })),
 };
 
 export default Gallery;
