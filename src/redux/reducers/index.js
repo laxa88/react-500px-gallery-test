@@ -61,6 +61,7 @@ function counter(state = {
       };
     }
 
+    // Note: GALLERY_FAILED is not handled for now
     default: {
       return state;
     }
